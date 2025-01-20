@@ -45,7 +45,7 @@
 #include "throne_tracker.h"
 #include "kernel_compat.h"
 
-#if LINUX_VERSION_CODE >= KERNEL_VERSION(5, 0, 0) || defined(KSU_COMPAT_GET_CRED_RCU)
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(4, 14, 0) || defined(KSU_COMPAT_GET_CRED_RCU)
 #define KSU_GET_CRED_RCU
 #endif
 
@@ -891,7 +891,7 @@ void __init ksu_core_init(void)
 
 void ksu_core_exit(void)
 {
-#ifdef CONFIG_KPROBES
+#if defined(CONFIG_KPROBES) && 0
 	pr_info("ksu_core_kprobe_exit\n");
 	// we dont use this now
 	// ksu_kprobe_exit();
