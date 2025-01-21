@@ -49,7 +49,7 @@
 #include "throne_tracker.h"
 #include "kernel_compat.h"
 
-#if LINUX_VERSION_CODE >= KERNEL_VERSION(5, 0, 0) || defined(KSU_COMPAT_GET_CRED_RCU)
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(4, 14, 0) || defined(KSU_COMPAT_GET_CRED_RCU)
 #define KSU_GET_CRED_RCU
 #endif
 
