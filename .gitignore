@@ -3,3 +3,4 @@
 manager/
 userspace/
 test/
+*.patch
