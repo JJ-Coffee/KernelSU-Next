@@ -1170,6 +1170,14 @@ void susfs_try_umount_all(uid_t uid) {
 	try_umount("/data/adb/modules", false, MNT_DETACH, uid);
 	/* For both Legacy KSU and Magic Mount KSU */
 	try_umount("/debug_ramdisk", true, MNT_DETACH, uid);
+	try_umount("/sbin", false, MNT_DETACH, uid);
+
+	// try umount hosts file
+	try_umount("/system/etc/hosts", false, MNT_DETACH, uid);
+	
+	// try umount lsposed dex2oat bins
+	try_umount("/apex/com.android.art/bin/dex2oat64", false, MNT_DETACH, uid);
+	try_umount("/apex/com.android.art/bin/dex2oat32", false, MNT_DETACH, uid);
 }
 #endif
 
@@ -1333,9 +1341,9 @@ int ksu_handle_setuid(struct cred *new, const struct cred *old)
 	// filter the mountpoint whose target is `/data/adb`
 	try_umount("/odm", true, 0);
 	try_umount("/system", true, 0);
-	try_umount("/system_ext", true, 0);
 	try_umount("/vendor", true, 0);
 	try_umount("/product", true, 0);
+	try_umount("/system_ext", true, 0);
 	try_umount("/data/adb/modules", false, MNT_DETACH);
 
 	// try umount ksu temp path
