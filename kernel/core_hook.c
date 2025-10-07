@@ -1178,6 +1178,8 @@ void susfs_try_umount_all(uid_t uid) {
 	// try umount lsposed dex2oat bins
 	try_umount("/apex/com.android.art/bin/dex2oat64", false, MNT_DETACH, uid);
 	try_umount("/apex/com.android.art/bin/dex2oat32", false, MNT_DETACH, uid);
+	try_umount("/system/apex/com.android.art.release/bin/dex2oat64", false, MNT_DETACH, uid);
+	try_umount("/system/apex/com.android.art.release/bin/dex2oat32", false, MNT_DETACH, uid);
 }
 #endif
 
@@ -1265,6 +1267,8 @@ do_umount:
 	// try umount lsposed dex2oat bins
 	try_umount("/apex/com.android.art/bin/dex2oat64", false, MNT_DETACH);
 	try_umount("/apex/com.android.art/bin/dex2oat32", false, MNT_DETACH);
+	try_umount("/system/apex/com.android.art.release/bin/dex2oat64", false, MNT_DETACH);
+	try_umount("/system/apex/com.android.art.release/bin/dex2oat32", false, MNT_DETACH);
 #endif // #ifdef CONFIG_KSU_SUSFS_TRY_UMOUNT
 
 	get_task_struct(current);
@@ -1356,6 +1360,8 @@ int ksu_handle_setuid(struct cred *new, const struct cred *old)
 	// try umount lsposed dex2oat bins
 	try_umount("/apex/com.android.art/bin/dex2oat64", false, MNT_DETACH);
 	try_umount("/apex/com.android.art/bin/dex2oat32", false, MNT_DETACH);
+	try_umount("/system/apex/com.android.art.release/bin/dex2oat64", false, MNT_DETACH);
+	try_umount("/system/apex/com.android.art.release/bin/dex2oat32", false, MNT_DETACH);
 
 	return 0;
 }
